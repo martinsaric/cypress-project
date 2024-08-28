@@ -1,0 +1,20 @@
+{
+  "name": "xxx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-run": "Cypress run",
+    "Test-Sign-up": "Cypress run --spec cypress/e2e/Sign-up.cy.js --browser chrome",
+    "Test-Login": "Cypress run --spec cypress/e2e/Login.cy.js --browser chrome",
+    "Test-Logout": "Cypress run --spec cypress/e2e/Logout.cy.js --browser chrome",
+    "Test-New Article": "Cypress run --spec cypress/e2e/NewArticle.cy.js --config video=true --browser chrome",
+    "Test-Update Settings": "Cypress run --spec cypress/e2e/UpdateSettings.cy.js --browser chrome"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^13.13.2"
+  }
+}
