@@ -1,5 +1,9 @@
 /// <reference types="cypress" />
 
+import { NewArticlePage } from "../../fixtures/POM/NewArticleSelectors"
+import { generateRandomString } from "../../support/utility"
+
+
 describe('API flow', () => {
 
 
@@ -14,10 +18,13 @@ describe('API flow', () => {
         cy.wait('@postLogin')
         cy.wait('@getTags')
         cy.wait('@getArticles')
+      
 
     })
 
     it('New Article', () => {
+
+        const uniqueTitle = generateRandomString(3)
 
         cy.intercept('POST', 'https://api.realworld.io/api/articles/').as('postArticle')
         cy.intercept('GET', 'https://api.realworld.io/api/articles/*').as('getComments')
@@ -30,7 +37,7 @@ describe('API flow', () => {
         cy.get(NewArticlePage.tags).type('#citat', '#filozofija')
         cy.get(NewArticlePage.newArticleButton).click()
 
-        cy.wait('@postNewArticle').then(apiLog => {
+        cy.wait('@postArticle').then(apiLog => {
             console.log(apiLog)
             expect(apiLog.response.statusCode).to.equal(201)
             expect(apiLog.response.body.article.title).to.equal(uniqueTitle)
